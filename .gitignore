@@ -2,9 +2,6 @@
 # File di ambiente (contiene password reali, NON versionare)
 .env
 
-# Dati e volumi runtime Docker
-mysql-data/*
-
 # Log runtime (NON versionare, ma puoi fare eccezione per logs/.gitkeep)
 logs/*
 !logs/.gitkeep
