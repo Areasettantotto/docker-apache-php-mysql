@@ -53,11 +53,35 @@ Designed for traditional PHP projects, this setup lets you work professionally w
    MYSQL_PASSWORD=root
    ```
 
-- To import the dump into a running DB (safe, non-destructive to other DBs), run the helper service included in `docker-compose.yml`:
 
    ```bash
    docker compose up -d --build
    docker compose run --rm db-init
    docker compose exec db mysql -uroot -proot -e "USE my_db; SHOW TABLES; SELECT COUNT(*) FROM example;"
+
+## Maintenance
+
+If you need to recreate the database from scratch (destructive), use the following commands. These will DROP the existing database and re-import the dump from `mysql/dump.sql`.
+
+Warning: this is destructive and will permanently delete the data in the specified database. Make a backup first if needed.
+
+```bash
+# bring the stack up
+docker compose up -d --build
+
+# drop and recreate the database, then import the dump (safe single command)
+docker compose exec db mysql -uroot -proot -e "DROP DATABASE IF EXISTS my_db; CREATE DATABASE my_db;"
+docker compose exec db bash -lc "mysql -uroot -proot my_db < /docker-entrypoint-initdb.d/dump.sql"
+
+# verify
+docker compose exec db mysql -uroot -proot -e "USE my_db; SHOW TABLES; SELECT COUNT(*) FROM example;"
+```
+
+Alternatively you can use the included helper service which waits for the DB to be healthy and imports the dump safely:
+
+```bash
+docker compose run --rm db-init
+```
+
    ```
 
