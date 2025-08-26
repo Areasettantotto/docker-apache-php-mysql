@@ -21,3 +21,6 @@ logs/*
 *.old
 .docker/xdebug.ini
 .vscode/
+
+# Do not version database dumps
+mysql/dump.sql
