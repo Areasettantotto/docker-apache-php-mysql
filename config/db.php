@@ -6,7 +6,7 @@
 require_once __DIR__ . '/env.php';
 
 $host = $_ENV['DB_HOST'] ?? 'localhost';
-$db   = $_ENV['MYSQL_DATABASE'] ?? 'last';
+$db   = $_ENV['MYSQL_DATABASE'] ?? 'my_db';
 $user = $_ENV['MYSQL_USER'] ?? 'root';
 $pass = $_ENV['MYSQL_PASSWORD'] ?? 'root';
 $charset = 'utf8mb4';

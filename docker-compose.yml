@@ -1,7 +1,5 @@
 # docker-apache-php-mysql
 # Docker Compose file per lo stack Apache, PHP, MariaDB
-version: "3.8"
-
 services:
   apache:
     build: .
