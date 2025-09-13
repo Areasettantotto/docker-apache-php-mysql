@@ -1,7 +1,3 @@
-# docker-apache-php-mysql
-# File di ambiente (contiene password reali, NON versionare)
-.env
-
 # File temporanei di sistema/editor
 *.swp
 *.swo
